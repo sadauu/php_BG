@@ -1,36 +1,38 @@
 <?php
-  $name = "abudlmalik sakariyahu";
-        //strings in php
-  //echo strlen($name);
-  //echo strrev($name);
-  //echo str_word_count($name);
- //echo str_replace('sakariyahu','sadiq',$name)
+ 
+  $dbHost = "localhost";
+  $dbUser = "root";
+  $dbpassword = "password";
+  $dbName = "ahmed";
 
- $age = 20;
- $bmi = 12.5;
- $male = true;
- $cars = ["ahmed", "adamu", "äliyu", "benz"];
- var_dump($age);
- /* class user{
-    function user(){
-        $this->name = "ahmed";
-    }
-  }*/
+    //$connection = mysqli_connect($dbHost, $dbUsername, $dbpassword, $dbName);
 
-  function sum(){
-    $x = 30;
-    $y = 7;
-    $sum = $x + $y;
+  $firstname = "AHMED";
+  $lastnamed= "maiyaki";
+  $phoneNumber = "+2348100625087";
+  $address = "ässo villa";
+  $password = "letmein";
 
-    return $sum;
+
+  /*$insertQuery = "INSERT INTO users
+                  (firstname, email, password, address, phone_number)
+                  VALUES ('$firstname', '$email', ''md5($password)', '$address', '$phone_number')";
+  $excecuteQuery = mysql_query($connection, $insertQuery);
+  if ($excecuteQuery){
+    $excecutestatus = 'Record Inserted Successfully';
+  }else{
+    $excecutestatus = 'Error While Inserting Record';
   }
-  $addtion = sum();
-  /*$name = "(a,b)";
-  return "a,b";
-  $name = "ahmed,adam";*/
+  $connectionstatus = $connection
+  ?"Database Connection Successful"
+  :"Database Connection falied"*/
+
+  if (isset($_POST['add_record'])){
+    $firstname = $_POSt['first']
+  }
 
 ?>
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -42,15 +44,54 @@
     <h1 style="color: yellow; backgroud-colour: black; padding: 20px;">welcome! <?=  $name ?></h1>
     <P>you will like the folloing names and cars</P>
         <ul>
-        <?php foreach($cars as $car){?>
-        <li><?= $car ?></li>
-        <P><?php if($car == "benz"){?>
-            your favorite car is <?= $car?>
+        //<?php foreach($cars as $car){?>
+        //<li><?= $car ?></li>
+        //<?php }?>
+        //<P><?php if($car == "benz"){?>
+         //   your favorite car is <?= $car?>
         </P>
-        <?php }?>
+        //<?php }?>
         
         </ul>
     
 
+</body>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="index.php" method="POST" >
+          <p>
+          firstname: <input type="text" name="fisrt_name" id="" placehloder="enter your first name">
+          </p>
+          <p>
+          lastname: <input type="text" name="last_name" id="" placehloder="enter your last name">
+          </p>
+          <p>
+          emali: <input type="email" name="email" id="" placehloder="enter your email">
+          </p>
+          <p>
+          password: <input type="password" name="password" id="" placehloder="enter your password">
+          </p>
+          
+          <p>
+          address: <input type="address" name="address" id="" placehloder="enter your address">
+          </p>
+          <p>
+          phone number: <input type="text" name="phone_number" id="" placehloder="enter your phone number">
+          </p>
+          <p>
+            <button type="submit" name="add_record">submit</button>
+          </p>
+
+
+  </form>
+
 </body>
 </html>
+
