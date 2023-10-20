@@ -1,12 +1,6 @@
 <?php
  
-  $dbHost = "localhost";
-  $dbUser = "root";
-  $dbPassword = "";
-  $dbName = "zaboza";
-
-  $connection = mysqli_connect($dbHost, $dbUser, $dbPassword, $dbName);
-
+ include('connection.php');
   // $firstname = "ahmed";
   // $lastname = "maiyaki";
   // $phoneNumber = "+2348111904455";
