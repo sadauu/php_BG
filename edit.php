@@ -1,13 +1,13 @@
 <?php
-// include('connection.php');
+include('connection.php');
 
-// $userId = $_GET['userId'];
+$userId = $_GET['user_id'];
 
-// $fetchUser = "SELECT * FROM user WHERE id = '$userId'";
-// $fetchUserResult = mysqli_query($connection, $fetchUser);
-// $fetchUserData = mysqli_fetch_assoc($fetchUserData);
+$fetchUserQuery = "SELECT * FROM users WHERE id = '$userId'";
+$fetchUserResult = mysqli_query($connection, $fetchUserQuery);
+$fetchUserData = mysqli_fetch_assoc($fetchUserResult);
 
-// ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,7 +155,7 @@
 </head>
 <body>
     <?php
-    // if(!empty($fetchUserData)){?>
+    if(!empty($fetchUserData)){?>
     
     <div class="container">
         <div class="card">
@@ -164,19 +164,17 @@
             <h2>REGISTER</h2>
             <form action="index.php" method="POST">
 
-                <input type="text" class="input-box" name="firstname" value="" required>
+                <input type="text" class="input-box" name="firstname" value=<?= $fetchUserData['firstname'] ?> >
 
-                <input type="text" class="input-box" name="lastname" placeholder="Enter Your Last_Name" required>
+                <input type="text" class="input-box" name="lastname" value=<?= $fetchUserData['lastname'] ?> >
 
-                <input type="email" class="input-box" name="email" placeholder="Enter Your Email_Address" required>
+                <input type="email" class="input-box" name="email" value=<?= $fetchUserData['email'] ?> >
 
-                <input type="text" class="input-box" name="phoneNumber" placeholder="phone_Number" required>
+                <input type="text" class="input-box" name="phoneNumber" value=<?= $fetchUserData['phoneNumber'] ?> >
 
-                <input type="text" class="input-box" name="address" placeholder="address" required>
+                <input type="text" class="input-box" name="address" value=<?= $fetchUserData['address'] ?> >
 
-                <input type="password" class="input-box" name="password" placeholder="Password" required>
-
-                <input type="password" class=" input-box" name="confirmPassword" placeholder="confirm_password" required>
+                <input type="password" class="input-box" name="password" value=<?= $fetchUserData['password'] ?> >
 
                 <button type="submit" class="submit-btn" name="add_record">submit</button>
 
@@ -185,8 +183,8 @@
         </div>     
         </div>
     </div>
-    <?php //} else{?>
+    <?php } else{?>
         <h2>user not found</h2>
-   <?php// } ?>
+   <?php } ?>
 </body>
 </html>
