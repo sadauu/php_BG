@@ -49,7 +49,7 @@ $fetchResult = mysqli_query($connection, $fetchQuery);
 
         </tr>
         
-        <?php } ?>p
+        <?php } ?>
     </table>
 </body>
 </html>

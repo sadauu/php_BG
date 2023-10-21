@@ -17,15 +17,24 @@
     </style>
 </head>
 <body>
-    <div class="">
-        <div>
-            weight<input type="text" class="" name="" >
+    <section>
+        <div class="container">
+            <div class="inner-box">
+                <form action="edit.php" method="GET" name="bmi">
+                Mass in kilogram (kg):
+                <input type="text" class="" name="" >
+                <br>
 
-            height<input type="text" class="" name="">
+                Height in meter (m):
+                height<input type="text" class="" name="">
+                <br>
+                
+                <button type="submit" class="submit-btn" name="add_record">submit</button>
 
-            BMI<input type="text" class="" name="">
+                </form>
+            </div>
         </div>
-    </div>
+    </section>
 
 </body>
 </html>

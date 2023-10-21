@@ -1,25 +1,47 @@
 <?php
 include('connection.php');
 
-// $userId = $_GET['user_id'];
-// //echoo $usersId
-// $fetchUserQuery = "SELECT * FROM users WHERE id = '$userId'";
-// $fetchUserResult = mysqli_query($connection, $fetchUserQuery);
-// $fetchUserData = mysqli_fetch_assoc($fetchUserResult);
+if(isset($_POST['add_record'])){
+    $firstname = mysqli_escape_string($connection, $_POST['firstname']);
+    $lastname = mysqli_escape_string($connection, $_POST['lastname']);
+    $email = mysqli_escape_string($connection, $_POST['email']);
+    $password = mysqli_escape_string($connection, $_POST['password']);
+    $confirmPassword = mysqli_escape_string($connection, $_POST['confirmPassword']);
+    $phoneNumber = mysqli_escape_string($connection, $_POST['phoneNumber']);
+    $address = mysqli_escape_string($connection, $_POST['address']);
 
-// if(isset($_POST['add_record'])){
-//     $firstname = mysqli_escape_string($connection, $_POST['firstname']);
-//     $lastname = mysqli_escape_string($connection, $_POST['lastname']);
-//     $email = mysqli_escape_string($connection, $_POST['email']);
-//     $password = mysqli_escape_string($connection, $_POST['password']);
-//     $confirmPassword = mysqli_escape_string($connection, $_POST['confirmPassword']);
-//     $phoneNumber = mysqli_escape_string($connection, $_POST['phoneNumber']);
-//     $address = mysqli_escape_string($connection, $_POST['address']);
 
-//     $updateQuery = "UPDATE users SET firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', phoneNumber = '$phoneNumber', address = '$address'";
-// }
+    $error = null;
+    $success = null;
+    $pass = null;
 
+    if($password != $confirm_password){
+        $error = 'password mismatch';
+    }else{
+        $pass = md5($password);
+    }
+
+
+    $updateQuery = "UPDATE users SET firstname = '$firstname', lastname = '$lastname', email = '$email', phoneNumber = '$phoneNumber', address = '$address' WHERE id = '$userId'";
+    $resultQuery = mysqli_query($connection, $updateQuery);
+    if ($resultQuery) {
+        $success = 'Changes saved successfully';
+    }else{
+        $error = 'Error While Updating Record';
+    }
+    
+}
+//ternary code
+$userId = (isset($_POST['user_id']) ? $_POST['user_id'] : $_GET['user_id']);
+
+//echoo $usersId
+$fetchUserQuery = "SELECT * FROM users WHERE id = '$userId'";
+$fetchUserResult = mysqli_query($connection, $fetchUserQuery);
+$fetchUserData = mysqli_fetch_assoc($fetchUserResult);
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -166,37 +188,46 @@ include('connection.php');
     </style>
 </head>
 <body>
-    <?php
-    if(!empty($fetchUserData)){?>
-    
-    <div class="container">
-        <div class="card">
-        <div class="inner-box" id="card">
-            <div class="card-back">
-            <h2>REGISTER</h2>
-            <form action="edit.php" method="POST">
+    <hr>
+    <?php if(!empty($error)){ ?>
+        <p style="background-color: red; color: #fff; padding: 20px;"><?= $error ?></p>
+    <?php } ?>
+    <?php if(!empty($success)){ ?>
+        <p style="background-color: green; color: #fff; padding: 20px;"><?= $success ?></p>
+    <?php } ?>
+    <hr>
+    <section>
+        <?php
+        if(!empty($fetchUserData)){ ?>
+            <div class="container">
+                <div class="card">
+                    <div class="inner-box" id="card">
+                        <div class="card-back">
+                            <h2>REGISTER</h2>
+                            <form action="edit.php" method="POST">
 
-                <input type="text" class="input-box" name="firstname" value=<?= $fetchUserData['firstname'] ?> >
+                                <input type="text" class="input-box" name="firstname" value="<?= $fetchUserData['firstname'] ?>">
 
-                <input type="text" class="input-box" name="lastname" value=<?= $fetchUserData['lastname'] ?> >
+                                <input type="text" class="input-box" name="lastname" value="<?= $fetchUserData['lastname'] ?>">
 
-                <input type="email" class="input-box" name="email" value=<?= $fetchUserData['email'] ?> >
+                                <input type="email" class="input-box" name="email" value="<?= $fetchUserData['email'] ?>">
 
-                <input type="text" class="input-box" name="phoneNumber" value=<?= $fetchUserData['phoneNumber'] ?> >
+                                <input type="text" class="input-box" name="phoneNumber" value="<?= $fetchUserData['phoneNumber'] ?>">
 
-                <input type="text" class="input-box" name="address" value=<?= $fetchUserData['address'] ?> >
+                                <input type="text" class="input-box" name="address" value="<?= $fetchUserData['address'] ?>">
 
-                <input type="password" class="input-box" name="password" value=<?= $fetchUserData['password'] ?> >
+                                <input type="password" class="input-box" name="password" value="<?= $fetchUserData['password'] ?>">
 
-                <button type="submit" class="submit-btn" name="add_record">submit</button>
+                                <button type="submit" class="submit-btn" name="add_record">submit</button>
 
-            </form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>     
-        </div>
-    </div>
-    <?php } else{?>
-        <h2>user not found</h2>
-   <?php } ?>
+        <?php } else { ?>
+            <h2>user not found</h2>
+        <?php } ?>
+    </section>
 </body>
 </html>

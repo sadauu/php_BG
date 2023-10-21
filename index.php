@@ -220,35 +220,35 @@ if ($executeQuery) {
   <p style = "background-color: green; color: #fff; padding: 20px;"><?= $success ?></p>
   <?php } ?>
   <hr>
-  
-  <div class="container">
-    <div class="card">
-      <div class="inner-box" id="card">
-        <div class="card-back">
-          <h2>REGISTER</h2>
-          <form action="index.php" method="POST">
+  <section>
+    <div class="container">
+      <div class="card">
+        <div class="inner-box" id="card">
+          <div class="card-back">
+            <h2>REGISTER</h2>
+            <form action="index.php" method="POST">
 
-            <input type="text" class="input-box" name="firstname" placeholder="Enter Your First_Name" required>
+              <input type="text" class="input-box" name="firstname" placeholder="Enter Your First_Name" required>
 
-            <input type="text" class="input-box" name="lastname" placeholder="Enter Your Last_Name" required>
+              <input type="text" class="input-box" name="lastname" placeholder="Enter Your Last_Name" required>
 
-            <input type="email" class="input-box" name="email" placeholder="Enter Your Email_Address" required>
+              <input type="email" class="input-box" name="email" placeholder="Enter Your Email_Address" required>
 
-            <input type="text" class="input-box" name="phoneNumber" placeholder="phone_Number" required>
+              <input type="text" class="input-box" name="phoneNumber" placeholder="phone_Number" required>
 
-            <input type="text" class="input-box" name="address" placeholder="address" required>
+              <input type="text" class="input-box" name="address" placeholder="address" required>
 
-            <input type="password" class="input-box" name="password" placeholder="Password" required>
+              <input type="password" class="input-box" name="password" placeholder="Password" required>
 
-            <input type="password" class=" input-box" name="confirmPassword" placeholder="confirm_password" required>
+              <input type="password" class=" input-box" name="confirmPassword" placeholder="confirm_password" required>
 
-            <button type="submit" class="submit-btn" name="add_record">submit</button>
+              <button type="submit" class="submit-btn" name="add_record">submit</button>
 
-          </form>
-        </div>
-      </div>     
+            </form>
+          </div>
+        </div>     
+      </div>
     </div>
-  </div>
-  
+  </section> 
 </body>
 </html>
