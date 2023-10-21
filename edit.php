@@ -1,11 +1,23 @@
 <?php
 include('connection.php');
 
-$userId = $_GET['user_id'];
+// $userId = $_GET['user_id'];
+// //echoo $usersId
+// $fetchUserQuery = "SELECT * FROM users WHERE id = '$userId'";
+// $fetchUserResult = mysqli_query($connection, $fetchUserQuery);
+// $fetchUserData = mysqli_fetch_assoc($fetchUserResult);
 
-$fetchUserQuery = "SELECT * FROM users WHERE id = '$userId'";
-$fetchUserResult = mysqli_query($connection, $fetchUserQuery);
-$fetchUserData = mysqli_fetch_assoc($fetchUserResult);
+// if(isset($_POST['add_record'])){
+//     $firstname = mysqli_escape_string($connection, $_POST['firstname']);
+//     $lastname = mysqli_escape_string($connection, $_POST['lastname']);
+//     $email = mysqli_escape_string($connection, $_POST['email']);
+//     $password = mysqli_escape_string($connection, $_POST['password']);
+//     $confirmPassword = mysqli_escape_string($connection, $_POST['confirmPassword']);
+//     $phoneNumber = mysqli_escape_string($connection, $_POST['phoneNumber']);
+//     $address = mysqli_escape_string($connection, $_POST['address']);
+
+//     $updateQuery = "UPDATE users SET firstname = '$firstname', lastname = '$lastname', email = '$email', password = '$password', phoneNumber = '$phoneNumber', address = '$address'";
+// }
 
 ?>
 <!DOCTYPE html>
@@ -162,7 +174,7 @@ $fetchUserData = mysqli_fetch_assoc($fetchUserResult);
         <div class="inner-box" id="card">
             <div class="card-back">
             <h2>REGISTER</h2>
-            <form action="index.php" method="POST">
+            <form action="edit.php" method="POST">
 
                 <input type="text" class="input-box" name="firstname" value=<?= $fetchUserData['firstname'] ?> >
 
