@@ -1,5 +1,15 @@
 <?php
 include('connection.php');
+if(isset($POST['delete_user '])){
+    $userId = mysqli_escape_string($connection, $_POST['user_id']);
+
+    $deleteUserQuery = "DELETE FROM user WHERE id = '$userId'";
+    $deleteUSerResult = mysqli_Qurey($connection, $deleteUserQuery);
+    $deleteUserData = mysqli_delete_assoc($deleteUserResult);
+
+    
+}
+
 $userCount = 1;
 
 $fetchQuery = "SELECT * FROM users";
@@ -45,6 +55,10 @@ $fetchResult = mysqli_query($connection, $fetchQuery);
             <td><?= $fetchData['address'] ?></td>
             <td>
                 <a href="edit.php?user_id=<?= $fetchData['id'] ?>">Edit</a>
+                <form action="class3.php" method="post" enctype="multipart">
+                    <input type="hidden"name="user_id" value="" >
+                    <button style="background-color: red;  color: #fff; border:1px solid red; border-radius:3px; padding: 5px;" type="submit" name="delete">DELETE</button>
+                </form>
             </td>
 
         </tr>
